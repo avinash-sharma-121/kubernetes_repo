@@ -1,0 +1,22 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: frontend
+  namespace: chat-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chat-app
+  template:
+    metadata:
+      name: chat-app
+      labels:
+        app: chat-app
+    spec:
+      containers:
+      - name: chat-app
+        image: avisharma82/chat-app-frontend:latest
+        ports:
+        - containerPort: 80
+
