@@ -1,0 +1,10 @@
+kind: DevOps
+apiVersion: devops.com/v1
+metadata:
+  name: devops-test
+spec:
+  name: "Demo Testing"
+  duration: "3 months"
+  platform: "live plateform"
+  mode: "live mode"
+
