@@ -16,7 +16,6 @@ spec:
     spec:
       containers:
       - name: chat-app
-        image: avisharma82/chat-app-frontend:latest
+        image: iemafzal/frontend:v1
         ports:
         - containerPort: 80
-
