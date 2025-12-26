@@ -19,3 +19,10 @@ spec:
         image: avisharma82/chat_app_frontend:v1
         ports:
         - containerPort: 80
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "64Mi"
+          limits:
+            cpu: "500m"
+            memory: "128Mi"
