@@ -1,0 +1,9 @@
+kind: Node
+apiVersion: v1
+metadata:
+  name: minikube
+spec:
+  taints:
+    - key: "dev"
+      value: "true"
+      effect: "NoSchedule"
