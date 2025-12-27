@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: backend-chat-app
-        image: avisharma82/chat_app_backend:v1
+        image: avisharma82/chat_app_backend:v2
         ports:
         - containerPort: 5001
         env:
