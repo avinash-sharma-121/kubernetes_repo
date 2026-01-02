@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>K8s App Info</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    body {
+      /*background: linear-gradient(135deg, #6a11cb, #2575fc);*/
+        background: radial-gradient(circle, green, pink);
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .card {
+      background: rgba(0,0,0,0.35);
+      padding: 32px;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      min-width: 300px;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    .info {
+      background: rgba(255,255,255,0.15);
+      padding: 12px;
+      border-radius: 8px;
+      margin: 10px 0;
+      font-size: 1.1rem;
+    }
+    .version {
+      color: #ffd700;
+      font-weight: bold;
+    }
+    .ip {
+      color: #00ffea;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Hello from Kubernetes 🚀</h1>
+    <div class="info">
+      App Version: <span class="version">${APP_VERSION}</span>
+    </div>
+    <div class="info">
+      Pod IP: <span class="ip">${POD_IP}</span>
+    </div>
+  </div>
+</body>
+</html>
