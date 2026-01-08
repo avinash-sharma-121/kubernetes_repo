@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "three-tier.fullname" . }}-db
+spec:
+  serviceName: {{ include "three-tier.fullname" . }}-db
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      containers:
+        - name: mysql
+          image: "{{ .Values.database.image.repository }}:{{ .Values.database.image.tag }}"
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_DATABASE
+              value: {{ .Values.database.name }}
+            - name: MYSQL_USER
+              value: {{ .Values.database.user }}
+            - name: MYSQL_PASSWORD
+              value: {{ .Values.database.password }}
+            - name: MYSQL_ROOT_PASSWORD
+              value: root
+          volumeMounts:
+            - name: db-storage
+              mountPath: /var/lib/mysql
+  volumeClaimTemplates: []
+  volumeClaimTemplates: []

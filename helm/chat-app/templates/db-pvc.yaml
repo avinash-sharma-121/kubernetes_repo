@@ -1,0 +1,13 @@
+{{- if .Values.database.persistence.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "three-tier.fullname" . }}-db-pvc
+spec:
+  accessModes:
+    - {{ .Values.database.persistence.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.database.persistence.size }}
+  storageClassName: {{ .Values.database.persistence.storageClass }}
+{{- end }}
