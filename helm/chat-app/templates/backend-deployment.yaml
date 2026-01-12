@@ -1,19 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "three-tier.fullname" . }}-backend
+  name: {{ include "chat-app.fullname" . }}-backend
 spec:
   replicas: {{ .Values.backend.replicaCount }}
   selector:
     matchLabels:
-      app: backend
+      app: {{ include "chat-app.fullname" . }}-backend
   template:
     metadata:
       labels:
-        app: backend
+        app: {{ include "chat-app.fullname" . }}-backend
     spec:
       containers:
-        - name: backend
+        - name: {{ include "chat-app.fullname" . }}-backend
           image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}"
           ports:
-            - containerPort: 8080
+            - containerPort: {{ .Values.backend.service.port }}
+          env:
+            - name: NODE_ENV
+              value: "production"
+            - name: MONGODB_URI
+              value: mongodb://{{ .Values.database.user }}:{{ .Values.database.password }}@{{ include "chat-app.fullname" . }}-db:27017/{{ .Values.database.DBname }}?authSource=admin
+            - name: PORT
+              value: "{{ .Values.backend.service.port }}"
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secrets
+                  key: jwt-secret

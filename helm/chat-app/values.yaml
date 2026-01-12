@@ -1,8 +1,8 @@
 frontend:
   replicaCount: 1
   image:
-    repository: nginx
-    tag: latest
+    repository: avisharma82/chat_app_frontend
+    tag: v3
   service:
     port: 80
   ingress:
@@ -12,19 +12,19 @@ frontend:
 backend:
   replicaCount: 1
   image:
-    repository: nginx
-    tag: latest
+    repository: avisharma82/chat_app_backend
+    tag: v3
   service:
-    port: 8080
+    port: 5001
 
 database:
   image:
-    repository: mysql
-    tag: "8.0"
+    repository: mongo
+    tag: latest
 
-  name: mydb
-  user: appuser
-  password: applogs
+  DBname: chatApp
+  user: root
+  password: admin
 
   persistence:
     enabled: true

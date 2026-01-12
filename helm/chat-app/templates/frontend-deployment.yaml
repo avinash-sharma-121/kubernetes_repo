@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "three-tier.fullname" . }}-frontend
+  name: {{ include "chat-app.fullname" . }}-frontend
 spec:
   replicas: {{ .Values.frontend.replicaCount }}
   selector:
@@ -17,3 +17,10 @@ spec:
           image: "{{ .Values.frontend.image.repository }}:{{ .Values.frontend.image.tag }}"
           ports:
             - containerPort: 80
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "64Mi"
+            limits:
+              cpu: "500m"
+              memory: "128Mi"       

@@ -1,3 +1,3 @@
-{{- define "three-tier.fullname" -}}
-{{ .Release.Name }}-{{ .Chart.Name }}
+{{- define "chat-app.fullname" -}}
+{{ .Release.Name }}
 {{- end }}

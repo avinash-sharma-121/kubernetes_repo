@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "three-tier.fullname" . }}-db
+  name: {{ include "chat-app.fullname" . }}-db
 spec:
-  clusterIP: None
   selector:
-    app: db
+    app: mongo
   ports:
-    - port: 3306
-      targetPort: 3306
+    - port: 27017
+      targetPort: 27017
+  type: ClusterIP

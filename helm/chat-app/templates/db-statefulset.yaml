@@ -1,34 +1,39 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: {{ include "three-tier.fullname" . }}-db
+  name: {{ include "chat-app.fullname" . }}-db
 spec:
-  serviceName: {{ include "three-tier.fullname" . }}-db
+  serviceName: {{ include "chat-app.fullname" . }}-db
   replicas: 1
   selector:
     matchLabels:
-      app: db
+      app: mongo
   template:
     metadata:
       labels:
-        app: db
+        app: mongo
     spec:
       containers:
-        - name: mysql
+        - name: mongo
           image: "{{ .Values.database.image.repository }}:{{ .Values.database.image.tag }}"
           ports:
-            - containerPort: 3306
+            - containerPort: 27017
           env:
-            - name: MYSQL_DATABASE
+            - name: NODE_ENV
               value: {{ .Values.database.name }}
-            - name: MYSQL_USER
+            - name: MONGO_INITDB_ROOT_USERNAME
               value: {{ .Values.database.user }}
-            - name: MYSQL_PASSWORD
+            - name: MONGO_INITDB_ROOT_PASSWORD
               value: {{ .Values.database.password }}
-            - name: MYSQL_ROOT_PASSWORD
-              value: root
           volumeMounts:
             - name: chat-app-chat-app-db-pvc
-              mountPath: /var/lib/mysql
-  volumeClaimTemplates: []
-  volumeClaimTemplates: []
+              mountPath: /data/db
+  volumeClaimTemplates:
+      - metadata:
+           name: chat-app-chat-app-db-pvc
+        spec:
+           accessModes: [ "ReadWriteOnce" ]
+           resources:
+             requests:
+               storage: 1Gi
+               
