@@ -7,7 +7,7 @@ frontend:
     port: 80
   ingress:
     enabled: true
-    host: frontend.local
+    host: localhost
 
 backend:
   replicaCount: 1
@@ -31,5 +31,3 @@ database:
     size: 2Gi
     accessMode: ReadWriteOnce
     storageClass: standard   # gp2 (EKS), standard (minikube)
-
-    
