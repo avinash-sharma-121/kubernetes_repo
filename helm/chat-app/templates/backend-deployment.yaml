@@ -6,11 +6,11 @@ spec:
   replicas: {{ .Values.backend.replicaCount }}
   selector:
     matchLabels:
-      app: {{ include "chat-app.fullname" . }}-backend
+      app: backend
   template:
     metadata:
       labels:
-        app: {{ include "chat-app.fullname" . }}-backend
+        app: backend
     spec:
       containers:
         - name: {{ include "chat-app.fullname" . }}-backend
