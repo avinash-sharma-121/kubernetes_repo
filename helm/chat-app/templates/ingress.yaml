@@ -15,6 +15,14 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: {{ include "chat-app.fullname" . }}-frontend
+                name: frontend
                 port:
                   number: {{ .Values.frontend.service.port }}
+           
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: backend
+                port:
+                  number: {{ .Values.backend.service.port }}
