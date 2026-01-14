@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: chat-app
-        image: avisharma82/chat_app_frontend:v2
+        image: avisharma82/chat_app_frontend:v3
         ports:
         - containerPort: 80
         resources:

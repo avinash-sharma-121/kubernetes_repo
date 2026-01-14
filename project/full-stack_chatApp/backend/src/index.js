@@ -7,6 +7,8 @@ import path from "path";
 
 import { connectDB } from "./lib/db.js";
 
+let dbReady = false;
+
 import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js";
 import { app, server } from "./lib/socket.js";
@@ -15,6 +17,15 @@ dotenv.config();
 
 const PORT = process.env.PORT;
 const __dirname = path.resolve();
+
+// Health check endpoint for Kubernetes readiness probe
+app.get("/healthz", (req, res) => {
+  if (dbReady) {
+    res.status(200).send("OK");
+  } else {
+    res.status(503).send("DB not ready");
+  }
+});
 
 app.use(express.json());
 app.use(cookieParser());
@@ -36,7 +47,20 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-server.listen(PORT, () => {
+server.listen(PORT, async () => {
   console.log("server is running on PORT:" + PORT);
-  connectDB();
+
+  // Retry DB connection every 5 seconds until successful
+  const tryConnect = async () => {
+    try {
+      await connectDB();
+      dbReady = true;
+      console.log("Database is ready, backend is serving traffic.");
+    } catch (err) {
+      dbReady = false;
+      console.error("Database connection failed, will retry in 5 seconds...");
+      setTimeout(tryConnect, 5000);
+    }
+  };
+  tryConnect();
 });

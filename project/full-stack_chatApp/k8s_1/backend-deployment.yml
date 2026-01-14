@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: backend-chat-app
-        image: avisharma82/chat_app_backend:v2
+        image: avisharma82/chat_app_backend:v6
         ports:
         - containerPort: 5001
         env:
@@ -31,4 +31,11 @@ spec:
             secretKeyRef:
               name: backend-secrets
               key: jwt-secret
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 5001
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          failureThreshold: 3
               
