@@ -1,0 +1,26 @@
+#repositories:
+ #- name: chat-app-latest
+ #  url: ../helm/chat-app
+
+
+#local helmfiles: testing multi project helmfile setup
+
+#releases:
+# - name: chat-app121
+#   namespace: default
+#   chart: ../helm/chat-app
+#   version: 1.2.0
+#   values:
+#   - ../helm/chat-app/values.yaml
+
+
+#remote helmfile reference example
+
+releases:
+  - name: chat-app
+    namespace: default
+    chart: git::https://github.com/avinash-sharma-121/kubernetes_repo.git@helm/chat-app
+    values:
+      - https://raw.githubusercontent.com/avinash-sharma-121/kubernetes_repo/main/helm/chat-app/values.yaml
+    version: 1.2.1
+

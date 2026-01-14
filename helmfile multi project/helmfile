@@ -1,0 +1,11 @@
+#repositories:
+ #- name: chat-app-latest
+ #  url: ../helm/chat-app
+
+releases:
+ - name: chat-app121
+   namespace: default
+   chart: ../helm/chat-app
+   version: 1.2.0
+   values:
+   - ../helm/chat-app/values.yaml
