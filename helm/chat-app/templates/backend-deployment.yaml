@@ -29,3 +29,10 @@ spec:
                 secretKeyRef:
                   name: backend-secrets
                   key: jwt-secret
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 5001
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            failureThreshold: 3
