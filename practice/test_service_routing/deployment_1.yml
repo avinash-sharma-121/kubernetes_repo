@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test_app
+  template:
+    metadata:
+      labels:
+        app: test_app
+    spec:
+      containers:
+      - name: test-container-1
+        image: avisharma82/custom_nginx:v1
+        ports:
+        - containerPort: 80
