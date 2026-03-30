@@ -1,0 +1,3 @@
+what is headless service in kubernetes
+How to perform maintence on the k8s node
+What is the purpose of Operators
