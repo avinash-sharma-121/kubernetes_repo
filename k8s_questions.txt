@@ -1,3 +1,11 @@
 what is headless service in kubernetes
 How to perform maintence on the k8s node
 What is the purpose of Operators
+
+Ref link :- https://www.youtube.com/watch?v=WRDf3aKH3X0
+
+How does loadbalancer work with ingress in kubernetes
+How does kubernetes handle node failures
+How do you secure kubernetes clusters
+Your cluster is running slow ? how do you optimize it?
+How do you handle multi-cluster kubernetes deployments
