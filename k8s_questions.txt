@@ -9,3 +9,6 @@ How does kubernetes handle node failures
 How do you secure kubernetes clusters
 Your cluster is running slow ? how do you optimize it?
 How do you handle multi-cluster kubernetes deployments
+
+Ref link:- https://www.youtube.com/watch?v=viMWeRQnZOE
+
